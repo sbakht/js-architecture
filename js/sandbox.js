@@ -47,8 +47,8 @@ var Sandbox =  {
                 }
                 return el;
             },
-            template: function() {
-                core.createTemplate(module_selector);
+            template: function(data) {
+                core.createTemplate(module_selector, data);
             }
         };
     }

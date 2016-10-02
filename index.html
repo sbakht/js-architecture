@@ -29,18 +29,11 @@
 
         <script id="filters-bar-template" type="text/x-handlebars-template">
             <ul>
+            {{#each this}}
                 <li>
-                    <a href="#red">Red</a>
+                    <a href="{{href}}">{{text}}</a>
                 </li>
-                <li>
-                    <a href="#blue">Blue</a>
-                </li>
-                <li>
-                    <a href="#mobile">Mobile</a>
-                </li>
-                <li>
-                    <a href="#accessory">Accessory</a>
-                </li>
+            {{/each}}
             </ul>
         </script>
 

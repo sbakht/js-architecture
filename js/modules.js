@@ -42,7 +42,8 @@ CORE.create_module("filters-bar", function (sb) {
 
     return {
         init : function () {
-            sb.template();
+            var filters = [{text: "Red", href:"#red"}, {text: "Blue", href:"#blue"}, {text: "Mobile", href:"#mobile"}, {text: "Accessory", href:"#accessory"}];
+            sb.template(filters);
 
             filters = sb.find('a');
             sb.addEvent(filters, "click", this.filterProducts);
