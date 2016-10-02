@@ -135,6 +135,8 @@ CORE.create_module("shopping-cart", function (sb) {
             cart = sb.find("ul")[0];
             cartItems = {};
 
+            sb.onEvent(".cart_entry", "click", this.removeFromCart);
+
             sb.listen({
                 'add-item' : this.addItem        
             });
@@ -144,11 +146,17 @@ CORE.create_module("shopping-cart", function (sb) {
             sb.ignore(['add-item']);
         },
         addItem : function (product) {
-            if(cartItems[product.id]) {
-                cartItems[product.id].quantity++;
+            var id = "cart-" + product.id;
+            if(cartItems[id]) {
+                cartItems[id].quantity++;
             }else{
-                cartItems[product.id] = {name: product.name, quantity: 1, price: product.price.toFixed(2)};
+                cartItems[id] = {id: id, name: product.name, quantity: 1, price: product.price.toFixed(2)};
             }
+            sb.template(cartItems);
+        },
+        removeFromCart : function(e) {
+            var li = e.currentTarget;
+            delete cartItems[li.id];
             sb.template(cartItems);
         }
     };
