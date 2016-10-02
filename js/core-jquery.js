@@ -130,6 +130,12 @@ var CORE = (function () {
                     // log wrong arguments
                 }
             },
+            on : function(element, evt, fn, moduleID) {
+                jQuery("#" + moduleID).on(evt, element, fn);
+            },
+            off : function(element, evt, fn, moduleID) {
+                jQuery("#" + moduleID).off(evt, element, fn);
+            },
             create: function (el) {
                 return document.createElement(el);        
             },
@@ -147,7 +153,7 @@ var CORE = (function () {
             var source   = $("#" + moduleID + "-template").html();
             var template = Handlebars.compile(source);
             var html = template(data); 
-            $("#" + moduleID).append(html);
+            $("#" + moduleID).html(html);
         }
     };
 

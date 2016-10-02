@@ -39,17 +39,21 @@ CORE.create_module("search-box", function(sb) {
 
 CORE.create_module("filters-bar", function (sb) {
     var filters;
+    var data;
 
     return {
         init : function () {
-            var filters = [{text: "Red", href:"#red"}, {text: "Blue", href:"#blue"}, {text: "Mobile", href:"#mobile"}, {text: "Accessory", href:"#accessory"}];
-            sb.template(filters);
+            data = [{text: "Red", href:"#red"}, {text: "Blue", href:"#blue"}, {text: "Mobile", href:"#mobile"}, {text: "Accessory", href:"#accessory"}];
+            sb.template(data);
 
-            filters = sb.find('a');
-            sb.addEvent(filters, "click", this.filterProducts);
+            sb.onEvent("a", "click", this.filterProducts);
+
+            sb.listen({
+                'perform-search' : this.addFilterItemToBar
+            });
         }, 
         destroy : function () {
-            sb.removeEvent(filters, "click", this.filterProducts);
+            sb.offEvent("a", "click", this.filterProducts);
             filter = null;
         },
         filterProducts : function (e) {
@@ -78,7 +82,6 @@ CORE.create_module("product-panel", function (sb) {
 
     return {
         init : function () {
-            var that = this;
             sb.template();
             
             products = sb.find("li");
@@ -88,15 +91,11 @@ CORE.create_module("product-panel", function (sb) {
                 'perform-search': this.search,
                 'quit-search'   : this.reset
             });
-            eachProduct(function (product) {
-                sb.addEvent(product, 'click', that.addToCart);        
-            });
+
+            sb.onEvent("li", "click", this.addToCart);
         },
         destroy : function () {
-            var that = this;
-            eachProduct(function (product) {
-                sb.removeEvent(product, 'click', that.addToCart);        
-            });
+            sb.offEvent("li", "click", this.addToCart);
             sb.ignore(['change-filter', 'reset-filter', 'perform-search', 'quit-search']);
         },
         reset : reset,

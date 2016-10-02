@@ -11,6 +11,12 @@ var Sandbox =  {
             removeEvent : function (element, type, fn) {
                 core.dom.unbind(element, type, fn);              
             },
+            onEvent : function(element, type, fn) {
+                core.dom.on(element, type, fn, module_selector);
+            },
+            offEvent : function(element, type, fn) {
+                core.dom.off(element, type, fn, module_selector);
+            },
             notify : function (evt) {
                 if (core.is_obj(evt) && evt.type) {
                     core.triggerEvent(evt);
