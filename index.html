@@ -17,8 +17,6 @@
         </div>
         
         <div id="shopping-cart">
-            <ul>
-            </ul> 
         </div> 
 
         <script id="search-box-template" type="text/x-handlebars-template">
@@ -49,6 +47,18 @@
                 <li id="8" data-8088-keyword="blue accessory"><img src="img/8.jpg"><p>Eighth Item</p></li>
                 <li id="9" data-8088-keyword="red blue"><img src="img/9.jpg"><p>Ninth Item</p></li>
                 <li id="10" data-8088-keyword="mobile accessory"><img src="img/10.jpg"><p>Tenth Item</p></li>
+            </ul>
+        </script>
+
+        <script id="shopping-cart-template" type="text/x-handlebars-template">
+            <ul>
+            {{#each this}}
+                <li id="cart-{{id}}" class="cart_entry">
+                    <span class="product_name">{{name}}</span>
+                    <span class="quantity">{{quantity}}</span>
+                    <span class="price">{{price}}</span>
+                </li>
+            {{/each}}
             </ul>
         </script>
 

@@ -144,21 +144,12 @@ CORE.create_module("shopping-cart", function (sb) {
             sb.ignore(['add-item']);
         },
         addItem : function (product) {
-            var entry; 
-            entry = sb.find('#cart-' + product.id + ' .quantity')[0];
-            if (entry) {
-                entry.innerHTML = parseInt(entry.innerHTML, 10) + 1;
-                cartItems[product.id]++;
-            } else {
-                entry = sb.create_element("li", { id : "cart-" + product.id, children : [
-                    sb.create_element("span", { 'class' : 'product_name', text : product.name }),
-                    sb.create_element("span", { 'class' : 'quantity', text : '1' }),
-                    sb.create_element("span", { 'class' : 'price', text : '$' + product.price.toFixed(2) })
-                    ],
-                    'class' : 'cart_entry' });
-                cart.appendChild(entry);
-                cartItems[product.id] = 1;
+            if(cartItems[product.id]) {
+                cartItems[product.id].quantity++;
+            }else{
+                cartItems[product.id] = {name: product.name, quantity: 1, price: product.price.toFixed(2)};
             }
+            sb.template(cartItems);
         }
     };
 });
