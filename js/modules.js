@@ -3,6 +3,8 @@ CORE.create_module("search-box", function(sb) {
 
     return {
         init : function () {
+            sb.template();
+
             input = sb.find("#search_input")[0],
             button = sb.find("#search_button")[0],
             reset  = sb.find("#quit_search")[0];
@@ -40,6 +42,8 @@ CORE.create_module("filters-bar", function (sb) {
 
     return {
         init : function () {
+            sb.template();
+
             filters = sb.find('a');
             sb.addEvent(filters, "click", this.filterProducts);
         }, 
@@ -49,9 +53,9 @@ CORE.create_module("filters-bar", function (sb) {
         },
         filterProducts : function (e) {
             sb.notify({
-                    type : 'change-filter',
-                    data : e.currentTarget.innerHTML
-                });
+                type : 'change-filter',
+                data : e.currentTarget.innerHTML
+            });
         }
     };
 });
@@ -74,6 +78,7 @@ CORE.create_module("product-panel", function (sb) {
     return {
         init : function () {
             var that = this;
+            sb.template();
             
             products = sb.find("li");
             sb.listen({
@@ -104,7 +109,7 @@ CORE.create_module("product-panel", function (sb) {
         },
         search : function (query) {
             reset();
-           query = query.toLowerCase();
+            query = query.toLowerCase();
             eachProduct(function (product) {
                 if (product.getElementsByTagName('p')[0].innerHTML.toLowerCase().indexOf(query) < 0) {
                     product.style.opacity = '0.2';
@@ -146,11 +151,11 @@ CORE.create_module("shopping-cart", function (sb) {
                 cartItems[product.id]++;
             } else {
                 entry = sb.create_element("li", { id : "cart-" + product.id, children : [
-                            sb.create_element("span", { 'class' : 'product_name', text : product.name }),
-                            sb.create_element("span", { 'class' : 'quantity', text : '1' }),
-                            sb.create_element("span", { 'class' : 'price', text : '$' + product.price.toFixed(2) })
-                        ],
-                        'class' : 'cart_entry' });
+                    sb.create_element("span", { 'class' : 'product_name', text : product.name }),
+                    sb.create_element("span", { 'class' : 'quantity', text : '1' }),
+                    sb.create_element("span", { 'class' : 'price', text : '$' + product.price.toFixed(2) })
+                    ],
+                    'class' : 'cart_entry' });
                 cart.appendChild(entry);
                 cartItems[product.id] = 1;
             }

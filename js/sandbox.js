@@ -46,6 +46,9 @@ var Sandbox =  {
                     core.dom.apply_attrs(el, config);
                 }
                 return el;
+            },
+            template: function() {
+                core.createTemplate(module_selector);
             }
         };
     }

@@ -8,29 +8,43 @@
 <body>
     <div id="main">
         <div id="search-box">
-        	<input id="search_input" type="text" name='q' />
-        	<button id="search_button">Search</button>
-        	<button id="quit_search">Reset</button>
         </div>
 
         <div id="filters-bar">
-        	<ul>
-        		<li>
-        			<a href="#red">Red</a>
-        		</li>
-        		<li>
-        			<a href="#blue">Blue</a>
-        		</li>
-        		<li>
-        			<a href="#mobile">Mobile</a>
-        		</li>
-        		<li>
-        			<a href="#accessory">Accessory</a>
-        		</li>
-        	</ul>
         </div>
 
-       <div id="product-panel">
+        <div id="product-panel">
+        </div>
+        
+        <div id="shopping-cart">
+            <ul>
+            </ul> 
+        </div> 
+
+        <script id="search-box-template" type="text/x-handlebars-template">
+            <input id="search_input" type="text" name='q' />
+            <button id="search_button">Search</button>
+            <button id="quit_search">Reset</button>
+        </script>
+
+        <script id="filters-bar-template" type="text/x-handlebars-template">
+            <ul>
+                <li>
+                    <a href="#red">Red</a>
+                </li>
+                <li>
+                    <a href="#blue">Blue</a>
+                </li>
+                <li>
+                    <a href="#mobile">Mobile</a>
+                </li>
+                <li>
+                    <a href="#accessory">Accessory</a>
+                </li>
+            </ul>
+        </script>
+
+        <script id="product-panel-template" type="text/x-handlebars-template">
             <ul>
                 <li id="1" data-8088-keyword="red"><img src="img/1.jpg"><p>First Item</p></li>
                 <li id="2" data-8088-keyword="blue"><img src="img/2.jpg"><p>Second Item</p></li>
@@ -43,22 +57,16 @@
                 <li id="9" data-8088-keyword="red blue"><img src="img/9.jpg"><p>Ninth Item</p></li>
                 <li id="10" data-8088-keyword="mobile accessory"><img src="img/10.jpg"><p>Tenth Item</p></li>
             </ul>
+        </script>
 
-        </div>
-        
-        <div id="shopping-cart">
-            <ul>
-                
-            </ul> 
-        </div> 
 
         <!-- <script src="js/dojo.js"></script> -->
+        <script src="js/handlebars.js"></script>
         <script src="js/jquery.js"></script>
         <script src="js/core-jquery.js"></script>
-<!--         <script src="js/core-dojo.js"></script> --> 
+        <!-- <script src="js/core-dojo.js"></script> --> 
         <script src="js/sandbox.js"></script>
         <script src="js/modules.js"></script>
-
     </div>
 </body>
 </html>

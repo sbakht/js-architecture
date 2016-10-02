@@ -142,6 +142,11 @@ var CORE = (function () {
         },
         is_obj : function (obj) {
             return jQuery.isPlainObject(obj);         
+        },
+        createTemplate: function(moduleID) {
+            var source   = $("#" + moduleID + "-template").html();
+            var template = Handlebars.compile(source);
+            $("#" + moduleID).append(template);
         }
     };
 
